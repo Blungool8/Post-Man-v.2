@@ -94,6 +94,7 @@ interface Zone {
   name: string;
   description: string;
   mapImage: string;
+  estimatedStops: number;
 }
 
 export default function App() {
@@ -173,8 +174,8 @@ export default function App() {
         
       } catch (error) {
         console.error('❌ ERRORE nel caricamento:', error);
-        console.error('Stack trace:', error.stack);
-        Alert.alert('Errore', `Errore nel caricamento della zona: ${error.message}`);
+        console.error('Stack trace:', (error as Error).stack);
+        Alert.alert('Errore', `Errore nel caricamento della zona: ${(error as Error).message}`);
       }
     } else {
       console.log('❌ Condizione if NON superata');
@@ -211,7 +212,7 @@ export default function App() {
         );
       } catch (error) {
         console.error('Errore nel caricamento:', error);
-        Alert.alert('Errore', `Errore nel caricamento della zona: ${error.message}`);
+        Alert.alert('Errore', `Errore nel caricamento della zona: ${(error as Error).message}`);
       }
     } else {
       console.log('❌ Condizione if NON superata');
